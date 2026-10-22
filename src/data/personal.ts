@@ -4,7 +4,7 @@
 // ============================================================
 
 export const personalInfo = {
-  name: 'Muhammad Ikhsanul Fikri',
+  name: 'Muhammad Ikhsanull Fikri',
   role: 'Full-Stack Developer',
   tagline: 'I build performant web apps from idea to deployment.',
   bio: `Hi, I'm Ican — a Full-Stack Developer based in Jakarta, Indonesia.
