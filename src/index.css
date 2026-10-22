@@ -1,0 +1,67 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Design Tokens ──────────────────────────────────────────── */
+
+/* Light Mode (default) */
+:root {
+  --color-primary:  249 250 251;   /* #F9FAFB — off-white, near white */
+  --color-surface:  243 244 246;   /* #F3F4F6 — gray-100 */
+  --color-cyan:     0 188 212;     /* #00BCD4 — accent (same both modes) */
+  --color-neutral:  17 24 39;      /* #111827 — near black */
+  --color-muted:    107 114 128;   /* #6B7280 — gray-500 */
+  --color-charcoal: 229 231 235;   /* #E5E7EB — gray-200, card/input bg */
+}
+
+/* Dark Mode */
+.dark {
+  --color-primary:  0 0 0;         /* #000000 */
+  --color-surface:  26 26 26;      /* #1A1A1A */
+  --color-cyan:     0 188 212;     /* #00BCD4 */
+  --color-neutral:  255 255 255;   /* #FFFFFF */
+  --color-muted:    224 224 224;   /* #E0E0E0 */
+  --color-charcoal: 51 51 51;      /* #333333 */
+}
+
+/* ─── Base ───────────────────────────────────────────────────── */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+body {
+  font-family: 'JetBrains Mono', monospace;
+  background-color: rgb(var(--color-primary));
+  color: rgb(var(--color-neutral));
+  font-size: 1rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Smooth transition when switching themes */
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* ─── Scrollbar ──────────────────────────────────────────────── */
+::-webkit-scrollbar        { width: 4px; }
+::-webkit-scrollbar-track  { background: rgb(var(--color-surface)); }
+::-webkit-scrollbar-thumb  { background: rgb(var(--color-cyan)); border-radius: 4px; }
+
+/* ─── Selection ──────────────────────────────────────────────── */
+::selection {
+  background: rgba(0, 188, 212, 0.25);
+  color: rgb(var(--color-neutral));
+}
+
+/* ─── Focus ring ─────────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid rgb(var(--color-cyan));
+  outline-offset: 2px;
+}
