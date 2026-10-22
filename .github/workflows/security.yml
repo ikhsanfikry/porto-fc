@@ -1,0 +1,43 @@
+name: Security Check
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: [main]
+  schedule:
+    - cron: "0 3 * * 1"
+
+permissions:
+  contents: read
+
+jobs:
+  security:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      - name: Audit dependency
+        run: npm audit --audit-level=high
+        continue-on-error: true
+
+      - run: npm run build
+
+      - name: Jalankan hasil build
+        run: |
+          npx serve -s dist -l 8080 &
+          npx wait-on http://localhost:8080
+
+      - name: ZAP Baseline Scan
+        uses: zaproxy/action-baseline@v0.14.0   # cek versi terbaru di Marketplace
+        with:
+          target: "http://localhost:8080"
+          cmd_options: "-j"
+          allow_issue_writing: false
+          fail_action: false
